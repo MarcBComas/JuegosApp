@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dmcolayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Dosmilcuarentayocho"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <GridLayout
+        android:id="@+id/tablero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:rowCount="4"
+        android:columnCount="4"
+        android:useDefaultMargins="true"
+        >
+
+        <ImageView
+            android:id="@+id/casilla00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_row="0"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_row="1"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_row="2"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="3"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:layout_row="3"
+            android:src="@drawable/casilla_vacia" />
+    </GridLayout>
+
+    <Button
+        android:id="@+id/newGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="New"
+        android:onClick="onClick"/>
+
+</LinearLayout>
