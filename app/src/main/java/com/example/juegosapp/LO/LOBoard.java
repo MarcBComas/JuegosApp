@@ -1,4 +1,4 @@
-package com.example.juegosapp;
+package com.example.juegosapp.LO;
 
 public class LOBoard {
     private LOCell[][] board;
@@ -39,6 +39,7 @@ public class LOBoard {
         }
 
         board[h][w].light();
+        board[h][w].setClicked(true);
         if (h - 1 >= 0) {
             board[h - 1][w].light();
         }
@@ -73,5 +74,27 @@ public class LOBoard {
             }
         }
         return true;
+    }
+
+    public void hint(LOBoard copyBoard) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (copyBoard.getPos(i,j).isClicked() && !(board[i][j].isClicked())) {
+                    board[i][j].setHint(true);
+                }
+                if(board[i][j].isClicked() && copyBoard.getPos(i,j).isClicked()){
+                    board[i][j].setHint(false);
+                }
+
+            }
+        }
+    }
+
+    public void flush(){
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j].setClicked(false);
+            }
+        }
     }
 }

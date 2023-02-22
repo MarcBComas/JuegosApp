@@ -1,22 +1,42 @@
-package com.example.juegosapp;
+package com.example.juegosapp.LO;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.juegosapp.highscores.GameDataHelper;
+import com.example.juegosapp.R;
+import com.example.juegosapp.highscores.RankingActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LightsOut extends AppCompatActivity {
     ImageButton[][] buttons;
     LOController controller;
     Toast wtoast;
+    TextView textTimer;
+    Timer timer;
+    TimerTask timerTask;
+    Double time = 0.0;
+    GameDataHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lights_out);
+        db = new GameDataHelper(this);
+        textTimer = (TextView) findViewById(R.id.timer);
+        timer = new Timer();
         wtoast = Toast.makeText(this, "You won!", Toast.LENGTH_SHORT);
         buttons = new ImageButton[5][5];
         buttons[0][0] = (ImageButton)findViewById(R.id.imgBttn00);
@@ -45,7 +65,7 @@ public class LightsOut extends AppCompatActivity {
         buttons[4][3] = (ImageButton)findViewById(R.id.imgBttn43);
         buttons[4][4] = (ImageButton)findViewById(R.id.imgBttn44);
         controller = new LOController(buttons);
-
+        startTimer();
     }
 
 
@@ -131,12 +151,83 @@ public class LightsOut extends AppCompatActivity {
                 while (controller.win()){
                     controller = new LOController(buttons);
                 }
-                controller.updateView();
+                resetTimer();
+                startTimer();
+                break;
+            case R.id.retryButton:
+                controller.retryBoard();
+                resetTimer();
+                startTimer();
+                break;
+            case R.id.hintButton:
+                controller.hint();
                 break;
         }
         if (controller.win()) {
-            wtoast.show();
+            timerTask.cancel();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("You Win! Write your name");
+            final EditText input = new EditText(this);
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+            builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String name = input.getText().toString();
+                    db.newScore(name, getTimerText(), "LO");
+                    Intent intent = new Intent(getBaseContext(), RankingActivity.class);
+                    intent.putExtra("GAME", "LO");
+                    startActivity(intent);
+                }
+            });
+            builder.show();
         }
         controller.updateView();
     }
+
+    private void startTimer() {
+        timerTask = new TimerTask()
+        {
+            @Override
+            public void run()
+            {
+                runOnUiThread(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        time++;
+                        textTimer.setText(getTimerText());
+                    }
+                });
+            }
+
+        };
+        timer.scheduleAtFixedRate(timerTask, 0 ,1000);
+    }
+
+    private String getTimerText()
+    {
+        int rounded = (int) Math.round(time);
+
+        int seconds = ((rounded % 86400) % 3600) % 60;
+        int minutes = ((rounded % 86400) % 3600) / 60;
+        int hours = ((rounded % 86400) / 3600);
+
+        return formatTime(seconds, minutes, hours);
+    }
+
+    private void resetTimer() {
+        if(timerTask != null) {
+            timerTask.cancel();
+            time = 0.0;
+            textTimer.setText(formatTime(0,0,0));
+        }
+    }
+
+    private String formatTime(int seconds, int minutes, int hours)
+    {
+        return String.format("%02d",hours) + " : " + String.format("%02d",minutes) + " : " + String.format("%02d",seconds);
+    }
+
 }

@@ -1,18 +1,24 @@
-package com.example.juegosapp;
+package com.example.juegosapp.DMCO;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GestureDetectorCompat;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.juegosapp.highscores.GameDataHelper;
+import com.example.juegosapp.OnSwipeTouchListener;
+import com.example.juegosapp.R;
+import com.example.juegosapp.highscores.RankingActivity;
 
 public class Dosmilcuarentayocho extends AppCompatActivity{
     ImageView[][] cells;
@@ -21,14 +27,17 @@ public class Dosmilcuarentayocho extends AppCompatActivity{
     Toast wtoast;
     Toast ltoast;
     LinearLayout layout;
+    TextView score;
+    GameDataHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dosmilcuarentayocho);
-        wtoast = Toast.makeText(this, "You won!", Toast.LENGTH_SHORT);
         ltoast = Toast.makeText(this, "You lost!", Toast.LENGTH_SHORT);
         cells = new ImageView[4][4];
+        db = new GameDataHelper(this);
+        score = (TextView)findViewById(R.id.score);
         newGame = (Button)findViewById(R.id.newGame);
         layout = (LinearLayout) findViewById(R.id.dmcolayout);
         cells[0][0] = (ImageView) findViewById(R.id.casilla00);
@@ -51,44 +60,51 @@ public class Dosmilcuarentayocho extends AppCompatActivity{
         layout.setOnTouchListener(new OnSwipeTouchListener(this) {
             public void onSwipeTop() {
                 controller.move("up");
-                controller.addRandomCell();
-                controller.updateView();
-                if (controller.win()) {
-                    wtoast.show();
-                }
+                update();
             }
 
             public void onSwipeRight() {
                 controller.move("right");
-                controller.addRandomCell();
-                controller.updateView();
-                if (controller.win()) {
-                    wtoast.show();
-                }
+                update();
             }
 
             public void onSwipeLeft() {
                 controller.move("left");
-                controller.addRandomCell();
-                controller.updateView();
-                if (controller.win()) {
-                    wtoast.show();
-                } else if (controller.lose()) {
-                    ltoast.show();
-                }
+                update();
             }
 
             public void onSwipeBottom() {
                 controller.move("down");
-                controller.addRandomCell();
-                controller.updateView();
-                if (controller.win()) {
-                    wtoast.show();
-                }
+                update();
             }
         });
     }
 
+    public void update() {
+        score.setText(String.valueOf(controller.getScore()));
+        controller.addRandomCell();
+        controller.updateView();
+        if (controller.win()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("You Win! Write your name");
+            final EditText input = new EditText(this);
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+            builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String name = input.getText().toString();
+                    db.newScore(name, String.valueOf(controller.getScore()), "DMCO");
+                    Intent intent = new Intent(getBaseContext(), RankingActivity.class);
+                    intent.putExtra("GAME", "DMCO");
+                    startActivity(intent);
+                }
+            });
+            builder.show();
+        } else if (controller.lose()) {
+            ltoast.show();
+        }
+    }
     public void onClick(View v) {
         controller = new DMCOController(cells);
     }

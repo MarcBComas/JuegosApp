@@ -1,14 +1,18 @@
-package com.example.juegosapp;
+package com.example.juegosapp.DMCO;
 
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.juegosapp.R;
+
 public class DMCOController {
     DMCOBoard board;
     ImageView[][] images;
+    int score;
 
     public DMCOController(ImageView[][] imgArray) {
         images = imgArray;
+        this.score = 0;
         board = new DMCOBoard(this.images.length, this.images[0].length);
         board.addRandomCell();
         updateView();
@@ -17,18 +21,26 @@ public class DMCOController {
     public void move(String movement) {
         switch (movement) {
             case "up":
-                board.moveUp();
+                score += board.moveUp();
                 break;
             case "down":
-                board.moveDown();
+                score += board.moveDown();
                 break;
             case "left":
-                board.moveLeft();
+                score += board.moveLeft();
                 break;
             case "right":
-                board.moveRight();
+                score += board.moveRight();
                 break;
         }
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public void updateView(){

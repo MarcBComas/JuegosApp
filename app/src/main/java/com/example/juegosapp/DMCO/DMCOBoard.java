@@ -1,4 +1,4 @@
-package com.example.juegosapp;
+package com.example.juegosapp.DMCO;
 
 public class DMCOBoard {
     DMCOCell[][] board;
@@ -32,14 +32,16 @@ public class DMCOBoard {
 
     public int getWidth(){return this.board[0].length;}
 
-    public void moveUp() {
+    public int moveUp() {
+        int score = 0;
         for (int i = 1; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j].getValue() != 0) {
                     for (int k = 0; k < i; k++) {
-                        if(board[k][j].getValue() == board[i][j].getValue() && k < i){
+                        if(board[k][j].getValue() == board[i][j].getValue()){
                             board[k][j].setValue(board[k][j].getValue() * 2);
                             board[i][j].setValue(0);
+                            score += 100;
                             break;
                         } else if (board[k][j].getValue() == 0) {
                             board[k][j].setValue(board[i][j].getValue());
@@ -50,9 +52,11 @@ public class DMCOBoard {
                 }
             }
         }
+        return score;
     }
 
-    public void moveDown() {
+    public int moveDown() {
+        int score = 0;
         for (int i = board.length - 2; i >= 0; i--) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j].getValue() != 0) {
@@ -60,6 +64,7 @@ public class DMCOBoard {
                         if (board[k][j].getValue() == board[i][j].getValue()) {
                             board[k][j].setValue(board[i][j].getValue() * 2);
                             board[i][j].setValue(0);
+                            score += 100;
                             break;
                         } else if (board[k][j].getValue() == 0) {
                             board[k][j].setValue(board[i][j].getValue());
@@ -70,9 +75,11 @@ public class DMCOBoard {
                 }
             }
         }
+        return score;
     }
 
-    public void moveLeft() {
+    public int moveLeft() {
+        int score = 0;
         for (int i = 0; i < board.length; i++) {
             for (int j = 1; j < board[i].length; j++) {
                 if (board[i][j].getValue() != 0) {
@@ -80,6 +87,7 @@ public class DMCOBoard {
                         if (board[i][k].getValue() == board[i][j].getValue()) {
                             board[i][k].setValue(board[i][k].getValue() * 2);
                             board[i][j].setValue(0);
+                            score += 100;
                             break;
                         }else if (board[i][k].getValue() == 0) {
                             board[i][k].setValue(board[i][j].getValue());
@@ -90,9 +98,11 @@ public class DMCOBoard {
                 }
             }
         }
+        return score;
     }
 
-    public void moveRight() {
+    public int moveRight() {
+        int score = 0;
         for (int i = 0; i < board.length; i++) {
             for (int j = board[i].length - 2; j >= 0; j--) {
                 if (board[i][j].getValue() != 0) {
@@ -100,6 +110,7 @@ public class DMCOBoard {
                         if (board[i][k].getValue() == board[i][j].getValue()) {
                             board[i][k].setValue(board[i][j].getValue() * 2);
                             board[i][j].setValue(0);
+                            score += 100;
                             break;
                         }else if (board[i][k].getValue() == 0) {
                             board[i][k].setValue(board[i][j].getValue());
@@ -110,16 +121,7 @@ public class DMCOBoard {
                 }
             }
         }
-    }
-
-    public void addRandomCell(){
-        int i = (int) (Math.random() * board.length);
-        int j = (int) (Math.random() * board[0].length);
-        if(board[i][j].getValue() == 0){
-            board[i][j].setValue(2);
-        }else{
-            addRandomCell();
-        }
+        return score;
     }
 
     public boolean isGameOver(){
@@ -143,4 +145,17 @@ public class DMCOBoard {
         }
         return false;
     }
+
+    public void addRandomCell(){
+        if (!isGameOver() && !win()) {
+            int i = (int) (Math.random() * board.length);
+            int j = (int) (Math.random() * board[0].length);
+            if(board[i][j].getValue() == 0){
+                board[i][j].setValue(2);
+            }else{
+                addRandomCell();
+            }
+        }
+    }
+
 }

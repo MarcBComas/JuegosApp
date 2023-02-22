@@ -5,9 +5,15 @@
     android:id="@+id/dmcolayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dosmilcuarentayocho"
+    tools:context=".DMCO.Dosmilcuarentayocho"
     android:gravity="center"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"/>
 
     <GridLayout
         android:id="@+id/tablero"

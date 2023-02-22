@@ -7,6 +7,28 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/mlogo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/logo1"
+            />
+
+        <ImageView
+            android:id="@+id/mlogo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo2"
+            />
+    </LinearLayout>
+
     <Button
         android:id="@+id/lightsout"
         android:layout_width="wrap_content"
@@ -17,12 +39,62 @@
         android:onClick="onClick"/>
 
     <Button
+        android:id="@+id/loplay"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugar"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/lohighscores"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntuaciones"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:onClick="onClick"/>
+
+    <Button
         android:id="@+id/dmco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center"
         android:text="2048"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/dmcoplay"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jugar"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/dmcohighscores"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntuaciones"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/atras"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atras"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
         android:onClick="onClick"/>
 
 </LinearLayout>

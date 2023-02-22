@@ -1,4 +1,4 @@
-package com.example.juegosapp;
+package com.example.juegosapp.DMCO;
 
 public class DMCOCell {
     private int value;

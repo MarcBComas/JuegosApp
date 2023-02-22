@@ -1,7 +1,9 @@
-package com.example.juegosapp;
+package com.example.juegosapp.LO;
 
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.example.juegosapp.R;
 
 public class LOController {
     LOBoard board;
@@ -13,13 +15,17 @@ public class LOController {
         this.board = new LOBoard(this.buttons.length, this.buttons[0].length);
         board.randomize();
         this.copyBoard = new LOBoard(board);
+        board.flush();
         updateView();
     }
 
     public void updateView(){
         for (int i = 0; i <buttons.length; i++){
             for (int j = 0; j < buttons[i].length; j++) {
-                if (board.getPos(i,j).isOn()) {
+                if (board.getPos(i,j).isHint()) {
+                    buttons[i][j].setImageResource(R.drawable.hint);
+                    buttons[i][j].setVisibility(View.VISIBLE);
+                } else if (board.getPos(i,j).isOn()) {
                     buttons[i][j].setImageResource(R.drawable.lighton);
                     buttons[i][j].setVisibility(View.VISIBLE);
                 } else if (!board.getPos(i,j).isOn()) {
@@ -38,6 +44,12 @@ public class LOController {
     public void retryBoard(){
         board = copyBoard;
         copyBoard = new LOBoard(copyBoard);
+        updateView();
+    }
+
+    public void hint(){
+        board.hint(copyBoard);
+        updateView();
     }
 
     public boolean win(){
