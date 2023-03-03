@@ -11,13 +11,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.juegosapp.DMCO.Dosmilcuarentayocho;
-import com.example.juegosapp.LO.LightsOut;
+import com.example.juegosapp.LO.LightsOut4;
+import com.example.juegosapp.LO.LightsOut5;
 import com.example.juegosapp.highscores.RankingActivity;
 
 public class MainActivity extends AppCompatActivity {
     Button lobttn;
     Button lohsbttn;
-    Button loplaybttn;
+    Button loplaybttn5;
+
+    Button loplaybttn4;
     Button dmcobttn;
     Button dmcohsbttn;
     Button dmcoplaybttn;
@@ -32,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         lobttn = (Button) findViewById(R.id.lightsout);
         lohsbttn = (Button) findViewById(R.id.lohighscores);
-        loplaybttn = (Button) findViewById(R.id.loplay);
+        loplaybttn5 = (Button) findViewById(R.id.loplay5);
+        loplaybttn4 = (Button) findViewById(R.id.loplay4);
         dmcobttn = (Button) findViewById(R.id.dmco);
         dmcohsbttn = (Button) findViewById(R.id.dmcohighscores);
         dmcoplaybttn = (Button) findViewById(R.id.dmcoplay);
@@ -59,14 +63,16 @@ public class MainActivity extends AppCompatActivity {
                 dmcobttn.setVisibility(View.GONE);
                 lobttn.setVisibility(View.GONE);
                 lohsbttn.setVisibility(View.VISIBLE);
-                loplaybttn.setVisibility(View.VISIBLE);
+                loplaybttn5.setVisibility(View.VISIBLE);
+                loplaybttn4.setVisibility(View.VISIBLE);
                 backbttn.setVisibility(View.VISIBLE);
                 break;
             case R.id.atras:
                 dmcobttn.setVisibility(View.VISIBLE);
                 lobttn.setVisibility(View.VISIBLE);
                 lohsbttn.setVisibility(View.GONE);
-                loplaybttn.setVisibility(View.GONE);
+                loplaybttn5.setVisibility(View.GONE);
+                loplaybttn4.setVisibility(View.GONE);
                 dmcohsbttn.setVisibility(View.GONE);
                 dmcoplaybttn.setVisibility(View.GONE);
                 backbttn.setVisibility(View.GONE);
@@ -81,8 +87,11 @@ public class MainActivity extends AppCompatActivity {
                 intent2.putExtra("GAME", "DMCO");
                 startActivity(intent2);
                 break;
-            case R.id.loplay:
-                startActivity(new Intent(MainActivity.this, LightsOut.class));
+            case R.id.loplay5:
+                startActivity(new Intent(MainActivity.this, LightsOut5.class));
+                break;
+            case R.id.loplay4:
+                startActivity(new Intent(MainActivity.this, LightsOut4.class));
                 break;
             case R.id.dmcoplay:
                 startActivity(new Intent(MainActivity.this, Dosmilcuarentayocho.class));

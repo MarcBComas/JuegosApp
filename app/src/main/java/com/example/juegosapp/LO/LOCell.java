@@ -35,8 +35,18 @@ public class LOCell {
         return isClicked;
     }
 
-    public void setClicked(boolean clicked) {
-        isClicked = clicked;
+    public void click() {
+        if (isClicked) {
+            setClicked(false);
+        } else {
+            setClicked(true);
+        }
+
+    }
+
+
+    public void setClicked(boolean click) {
+        this.isClicked = click;
     }
 
     public boolean isHint() {

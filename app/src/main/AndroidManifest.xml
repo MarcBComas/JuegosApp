@@ -27,7 +27,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LO.LightsOut"
+            android:name=".LO.LightsOut5"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LO.LightsOut4"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

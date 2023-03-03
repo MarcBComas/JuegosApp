@@ -15,8 +15,8 @@ public class LOController {
         this.board = new LOBoard(this.buttons.length, this.buttons[0].length);
         board.randomize();
         this.copyBoard = new LOBoard(board);
-        board.flush();
         updateView();
+        board.flush();
     }
 
     public void updateView(){

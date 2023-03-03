@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -29,70 +30,88 @@
             />
     </LinearLayout>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/lightsout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lights Out"
+        android:background="@drawable/buttons"
         android:layout_marginTop="100dp"
         android:layout_gravity="center"
         android:onClick="onClick"/>
 
-    <Button
-        android:id="@+id/loplay"
+    <android.widget.Button
+        android:id="@+id/loplay5"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jugar"
+        android:text="5x5"
+        android:background="@drawable/buttons"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:onClick="onClick"/>
 
-    <Button
+    <android.widget.Button
+        android:id="@+id/loplay4"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4x4"
+        android:background="@drawable/buttons"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:onClick="onClick"/>
+
+    <android.widget.Button
         android:id="@+id/lohighscores"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Puntuaciones"
+        android:background="@drawable/buttons"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:onClick="onClick"/>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/dmco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
         android:layout_marginTop="60dp"
         android:layout_gravity="center"
         android:text="2048"
         android:onClick="onClick"/>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/dmcoplay"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jugar"
+        android:background="@drawable/buttons"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:onClick="onClick"/>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/dmcohighscores"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Puntuaciones"
+        android:background="@drawable/buttons"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:onClick="onClick"/>
 
-    <Button
+    <android.widget.Button
         android:id="@+id/atras"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Atras"
+        android:background="@drawable/buttons"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:onClick="onClick"/>

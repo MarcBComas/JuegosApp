@@ -1,7 +1,7 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 <translate
     android:startOffset="100"
-    android:duration="5000"
+    android:duration="3000"
     android:fromYDelta="-550"
     android:toYDelta="0" />
 </set>

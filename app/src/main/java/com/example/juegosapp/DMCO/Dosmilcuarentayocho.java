@@ -101,8 +101,26 @@ public class Dosmilcuarentayocho extends AppCompatActivity{
                 }
             });
             builder.show();
+            recreate();
         } else if (controller.lose()) {
-            ltoast.show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("You lost! Write your name");
+            final EditText input = new EditText(this);
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+            builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String name = input.getText().toString();
+                    db.newScore(name, String.valueOf(controller.getScore()), "DMCO");
+                    Intent intent = new Intent(getBaseContext(), RankingActivity.class);
+                    intent.putExtra("GAME", "DMCO");
+                    startActivity(intent);
+
+                }
+            });
+            builder.show();
+            recreate();
         }
     }
     public void onClick(View v) {

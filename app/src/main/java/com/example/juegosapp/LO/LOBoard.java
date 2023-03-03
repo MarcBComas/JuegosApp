@@ -2,6 +2,7 @@ package com.example.juegosapp.LO;
 
 public class LOBoard {
     private LOCell[][] board;
+    private boolean hints;
 
     public LOBoard(int h, int w){
         this.createEmptyBoard(h, w);
@@ -12,6 +13,7 @@ public class LOBoard {
             for (int j = 0; j < board[i].length; j++) {
                 board[i][j] = new LOCell();
                 board[i][j].setOn(copy.getPos(i,j).isOn());
+                board[i][j].setClicked(copy.getPos(i,j).isClicked());
             }
         }
     }
@@ -39,7 +41,7 @@ public class LOBoard {
         }
 
         board[h][w].light();
-        board[h][w].setClicked(true);
+        board[h][w].click();
         if (h - 1 >= 0) {
             board[h - 1][w].light();
         }
@@ -57,7 +59,7 @@ public class LOBoard {
     public void randomize(){
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[i].length; j++) {
-                double lightpercent = 0.55;
+                double lightpercent = 0.45;
                 if (Math.random() < lightpercent) {
                     click(i,j);
                 }
@@ -76,17 +78,25 @@ public class LOBoard {
         return true;
     }
 
-    public void hint(LOBoard copyBoard) {
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if (copyBoard.getPos(i,j).isClicked() && !(board[i][j].isClicked())) {
-                    board[i][j].setHint(true);
-                }
-                if(board[i][j].isClicked() && copyBoard.getPos(i,j).isClicked()){
+    public void hint(LOBoard copy) {
+        if (hints) {
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[i].length; j++) {
                     board[i][j].setHint(false);
                 }
-
             }
+            hints = false;
+        } else {
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[i].length; j++) {
+                    if (!getPos(i,j).isClicked() && copy.getPos(i,j).isClicked()) {
+                        board[i][j].setHint(true);
+                    } else if (getPos(i,j).isClicked() && !copy.getPos(i,j).isClicked()) {
+                        board[i][j].setHint(true);
+                    }
+                }
+            }
+            hints = true;
         }
     }
 
