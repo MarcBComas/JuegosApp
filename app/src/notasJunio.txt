@@ -1,0 +1,13 @@
+Icono app
+Usuario y contraseña
+Puntuaciones en el menú para los dos juegos
+Puntuaciones eleccion para los juegos.
+Lights Out guardar tambien numero de pulsaciones
+Ordenacion puntuaciones (nombre, tiempo, pulsaciones)
+Hint lights out - Mejorar (una pulsaciones, mantener, quitar despues de seguir jugando)
+2048 Tiempo puntuacion
+2048 animacion
+2048 cuadrila 3x3, 5x5
+2048 jugada anterior
+Juegos boton de ir atrás
+Menu arriba de los juegos
