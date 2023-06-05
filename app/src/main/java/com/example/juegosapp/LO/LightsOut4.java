@@ -3,19 +3,24 @@ package com.example.juegosapp.LO;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.juegosapp.highscores.GameDataHelper;
+import com.example.juegosapp.MainActivity;
+import com.example.juegosapp.data.GameDataHelper;
 import com.example.juegosapp.R;
-import com.example.juegosapp.highscores.RankingActivity;
+import com.example.juegosapp.data.RankingActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -23,19 +28,23 @@ import java.util.TimerTask;
 public class LightsOut4 extends AppCompatActivity {
     ImageButton[][] buttons;
     LOController controller;
-    Toast wtoast;
+    private SharedPreferences prefs;
     TextView textTimer;
     Timer timer;
     TimerTask timerTask;
+    TextView textClicks;
     Double time = 0.0;
     GameDataHelper db;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lights_out4);
         db = new GameDataHelper(this);
+        prefs = getApplicationContext().getSharedPreferences("preferences", 0);
         textTimer = (TextView) findViewById(R.id.timer);
+        textClicks = (TextView) findViewById(R.id.numClicks);
         timer = new Timer();
         buttons = new ImageButton[4][4];
         buttons[0][0] = (ImageButton)findViewById(R.id.imgBttn00);
@@ -121,9 +130,9 @@ public class LightsOut4 extends AppCompatActivity {
                 controller.click(4,3);
                 break;
             case R.id.newButton:
-                controller = new LOController(buttons);
+                controller = new LOController(buttons, textClicks);
                 while (controller.win()){
-                    controller = new LOController(buttons);
+                    controller = new LOController(buttons, textClicks);
                 }
                 resetTimer();
                 startTimer();
@@ -140,22 +149,18 @@ public class LightsOut4 extends AppCompatActivity {
         if (controller.win()) {
             timerTask.cancel();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("You Win! Write your name");
-            final EditText input = new EditText(this);
-            input.setInputType(InputType.TYPE_CLASS_TEXT);
-            builder.setView(input);
+            builder.setTitle("You Win! Your time was "+getTimerText());
             builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String name = input.getText().toString();
-                    db.newScore(name, getTimerText(), "LO");
+                    String name = prefs.getString("user",null);
+                    db.newScore(name, getTimerText(), controller.getNumClicks(), "LO");
                     Intent intent = new Intent(getBaseContext(), RankingActivity.class);
                     intent.putExtra("GAME", "LO");
                     startActivity(intent);
                 }
             });
             builder.show();
-            recreate();
         }
         controller.updateView();
     }
@@ -192,7 +197,7 @@ public class LightsOut4 extends AppCompatActivity {
         return formatTime(seconds, minutes, hours);
     }
     private void start() {
-        controller = new LOController(buttons);
+        controller = new LOController(buttons, textClicks);
         startTimer();
     }
     private void resetTimer() {
@@ -206,6 +211,27 @@ public class LightsOut4 extends AppCompatActivity {
     private String formatTime(int seconds, int minutes, int hours)
     {
         return String.format("%02d",hours) + " : " + String.format("%02d",minutes) + " : " + String.format("%02d",seconds);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_games, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home_menu_item:
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.scores_menu_item:
+                Intent intent2 = new Intent(getBaseContext(), RankingActivity.class);
+                startActivity(intent2);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

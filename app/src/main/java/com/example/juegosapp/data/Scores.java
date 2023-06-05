@@ -1,9 +1,10 @@
-package com.example.juegosapp.highscores;
+package com.example.juegosapp.data;
 
 public class Scores {
     private int id;
     private String name;
-    private String score;
+    private String time;
+    private String other;
 
     public Scores() {}
 
@@ -15,8 +16,20 @@ public class Scores {
         return this.name;
     }
 
-    public String getScore() {
-        return this.score;
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getOther() {
+        return other;
+    }
+
+    public void setOther(String other) {
+        this.other = other;
     }
 
     public void setId(int id) {
@@ -27,7 +40,4 @@ public class Scores {
         this.name = name;
     }
 
-    public void setScore(String score) {
-        this.score = score;
-    }
 }

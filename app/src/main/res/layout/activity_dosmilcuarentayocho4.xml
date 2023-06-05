@@ -5,7 +5,7 @@
     android:id="@+id/dmcolayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DMCO.Dosmilcuarentayocho"
+    tools:context=".DMCO.Dosmilcuarentayocho4"
     android:gravity="center"
     android:orientation="vertical"
     android:background="@drawable/bg2048">
@@ -15,14 +15,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
-        android:background="@color/black"
+        android:layout_gravity="start"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_gravity="end"
+        android:textColor="@color/black"
+        android:background="@color/white"
         android:layout_marginBottom="20dp"/>
 
     <GridLayout
         android:id="@+id/tablero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="40dp"
         android:rowCount="4"
         android:columnCount="4"
         android:useDefaultMargins="true"
@@ -161,9 +173,18 @@
         android:id="@+id/newGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/buttons"
         android:text="New"
+        android:onClick="onClick"/>
+
+    <android.widget.Button
+        android:id="@+id/stepBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttons"
+        android:text="Stepback"
         android:onClick="onClick"/>
 
 </LinearLayout>

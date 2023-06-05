@@ -1,4 +1,4 @@
-package com.example.juegosapp.highscores;
+package com.example.juegosapp.data;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,10 +14,12 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ScoreVie
     class ScoreViewHolder extends RecyclerView.ViewHolder {
         public final TextView name;
         public final TextView score;
+        public final TextView time;
         public ScoreViewHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             score = (TextView) itemView.findViewById(R.id.score);
+            time = (TextView) itemView.findViewById(R.id.time);
         }
     }
 
@@ -25,11 +27,13 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ScoreVie
     GameDataHelper db;
     Context mContext;
     String game;
+    String order;
 
-    public RankingAdapter(Context context, GameDataHelper db, String game) {
+    public RankingAdapter(Context context, GameDataHelper db, String game, String order) {
         mInflater = LayoutInflater.from(context);
         mContext = context;
         this.game = game;
+        this.order = order;
         this.db = db;
     }
 
@@ -42,9 +46,15 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ScoreVie
     @Override
     public void onBindViewHolder(ScoreViewHolder holder, int position) {
         final ScoreViewHolder h = holder;
-        Scores current = db.query(position, game);
+        Scores current = db.gameQuery(position, game, order);
         holder.name.setText(current.getName());
-        holder.score.setText(current.getScore());
+        holder.time.setText("Tiempo: "+current.getTime());
+        if (game.equals("DMCO")) {
+            holder.score.setText("Puntuacion: "+current.getOther());
+        } else if (game.equals("LO")) {
+            holder.score.setText("Pulsaciones: "+current.getOther());
+        }
+
     }
 
     @Override

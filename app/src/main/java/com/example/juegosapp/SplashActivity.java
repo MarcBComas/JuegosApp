@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.juegosapp.data.User;
+
 public class SplashActivity extends AppCompatActivity{
     ImageView logo1;
     ImageView logo2;
@@ -26,7 +28,7 @@ public class SplashActivity extends AppCompatActivity{
                 }
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    startActivity(new Intent(SplashActivity.this, UserLog.class));
                     finish();
                 }
                 @Override

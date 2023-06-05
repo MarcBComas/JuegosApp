@@ -10,20 +10,21 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.juegosapp.DMCO.Dosmilcuarentayocho;
+import com.example.juegosapp.DMCO.Dosmilcuarentayocho3;
+import com.example.juegosapp.DMCO.Dosmilcuarentayocho4;
 import com.example.juegosapp.LO.LightsOut4;
 import com.example.juegosapp.LO.LightsOut5;
-import com.example.juegosapp.highscores.RankingActivity;
+import com.example.juegosapp.data.RankingActivity;
 
 public class MainActivity extends AppCompatActivity {
     Button lobttn;
-    Button lohsbttn;
+    Button hsbttn;
     Button loplaybttn5;
 
     Button loplaybttn4;
     Button dmcobttn;
-    Button dmcohsbttn;
-    Button dmcoplaybttn;
+    Button dmcoplaybttn4;
+    Button dmcoplaybttn3;
     Button backbttn;
 
     ImageView logo1;
@@ -34,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lobttn = (Button) findViewById(R.id.lightsout);
-        lohsbttn = (Button) findViewById(R.id.lohighscores);
+        hsbttn = (Button) findViewById(R.id.highscores);
         loplaybttn5 = (Button) findViewById(R.id.loplay5);
         loplaybttn4 = (Button) findViewById(R.id.loplay4);
         dmcobttn = (Button) findViewById(R.id.dmco);
-        dmcohsbttn = (Button) findViewById(R.id.dmcohighscores);
-        dmcoplaybttn = (Button) findViewById(R.id.dmcoplay);
+        dmcoplaybttn4 = (Button) findViewById(R.id.dmcoplay4);
+        dmcoplaybttn3 = (Button) findViewById(R.id.dmcoplay3);
         backbttn = (Button) findViewById(R.id.atras);
         logo1 = (ImageView) findViewById(R.id.mlogo1);
         logo2 = (ImageView) findViewById(R.id.mlogo2);
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         logo2.startAnimation(animfade);
         lobttn.startAnimation(animfade);
         dmcobttn.startAnimation(animfade);
+        hsbttn.startAnimation(animfade);
     }
 
     public void onClick(View v) {
@@ -55,14 +57,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.dmco:
                 dmcobttn.setVisibility(View.GONE);
                 lobttn.setVisibility(View.GONE);
-                dmcohsbttn.setVisibility(View.VISIBLE);
-                dmcoplaybttn.setVisibility(View.VISIBLE);
+                hsbttn.setVisibility(View.INVISIBLE);
+                dmcoplaybttn4.setVisibility(View.VISIBLE);
+                dmcoplaybttn3.setVisibility(View.VISIBLE);
                 backbttn.setVisibility(View.VISIBLE);
                 break;
             case R.id.lightsout:
                 dmcobttn.setVisibility(View.GONE);
                 lobttn.setVisibility(View.GONE);
-                lohsbttn.setVisibility(View.VISIBLE);
+                hsbttn.setVisibility(View.INVISIBLE);
                 loplaybttn5.setVisibility(View.VISIBLE);
                 loplaybttn4.setVisibility(View.VISIBLE);
                 backbttn.setVisibility(View.VISIBLE);
@@ -70,22 +73,16 @@ public class MainActivity extends AppCompatActivity {
             case R.id.atras:
                 dmcobttn.setVisibility(View.VISIBLE);
                 lobttn.setVisibility(View.VISIBLE);
-                lohsbttn.setVisibility(View.GONE);
+                hsbttn.setVisibility(View.VISIBLE);
                 loplaybttn5.setVisibility(View.GONE);
                 loplaybttn4.setVisibility(View.GONE);
-                dmcohsbttn.setVisibility(View.GONE);
-                dmcoplaybttn.setVisibility(View.GONE);
+                dmcoplaybttn4.setVisibility(View.GONE);
+                dmcoplaybttn3.setVisibility(View.GONE);
                 backbttn.setVisibility(View.GONE);
                 break;
-            case R.id.lohighscores:
+            case R.id.highscores:
                 Intent intent = new Intent(this, RankingActivity.class);
-                intent.putExtra("GAME", "LO");
                 startActivity(intent);
-                break;
-            case R.id.dmcohighscores:
-                Intent intent2 = new Intent(this, RankingActivity.class);
-                intent2.putExtra("GAME", "DMCO");
-                startActivity(intent2);
                 break;
             case R.id.loplay5:
                 startActivity(new Intent(MainActivity.this, LightsOut5.class));
@@ -93,8 +90,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.loplay4:
                 startActivity(new Intent(MainActivity.this, LightsOut4.class));
                 break;
-            case R.id.dmcoplay:
-                startActivity(new Intent(MainActivity.this, Dosmilcuarentayocho.class));
+            case R.id.dmcoplay4:
+                startActivity(new Intent(MainActivity.this, Dosmilcuarentayocho4.class));
+                break;
+            case R.id.dmcoplay3:
+                startActivity(new Intent(MainActivity.this, Dosmilcuarentayocho3.class));
                 break;
         }
     }

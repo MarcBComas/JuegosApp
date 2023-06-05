@@ -7,36 +7,52 @@ import com.example.juegosapp.R;
 
 public class DMCOController {
     DMCOBoard board;
+    DMCOBoard playedBoard;
     ImageView[][] images;
     int score;
+    int backupScore;
 
     public DMCOController(ImageView[][] imgArray) {
         images = imgArray;
         this.score = 0;
-        board = new DMCOBoard(this.images.length, this.images[0].length);
+        this.backupScore = 0;
+        playedBoard = null;
+        board = new DMCOBoard(this.images.length, this.images[0].length, this);
         board.addRandomCell();
         updateView();
     }
 
     public void move(String movement) {
+        backupScore = score;
+        playedBoard = new DMCOBoard(board);
         switch (movement) {
             case "up":
-                score += board.moveUp();
+                score += board.moveUp(images);
                 break;
             case "down":
-                score += board.moveDown();
+                score += board.moveDown(images);
                 break;
             case "left":
-                score += board.moveLeft();
+                score += board.moveLeft(images);
                 break;
             case "right":
-                score += board.moveRight();
+                score += board.moveRight(images);
                 break;
         }
     }
 
+    public void playBack() {
+        board = new DMCOBoard(playedBoard);
+        score = backupScore;
+        playedBoard = null;
+    }
+
     public int getScore() {
         return score;
+    }
+
+    public DMCOBoard getPlayedBoard() {
+        return playedBoard;
     }
 
     public void setScore(int score) {
@@ -99,6 +115,7 @@ public class DMCOController {
             }
         }
     }
+
 
     public boolean win() {return board.win();}
 

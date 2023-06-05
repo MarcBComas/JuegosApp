@@ -39,9 +39,11 @@ public class LOBoard {
         if (h >= board.length || w >= board[0].length || h < 0 || w <0) {
             throw new IllegalArgumentException();
         }
-
         board[h][w].light();
         board[h][w].click();
+        if (hints) {
+            hint();
+        }
         if (h - 1 >= 0) {
             board[h - 1][w].light();
         }
@@ -78,14 +80,9 @@ public class LOBoard {
         return true;
     }
 
-    public void hint(LOBoard copy) {
+    public void triggerHint(LOBoard copy) {
         if (hints) {
-            for (int i = 0; i < board.length; i++) {
-                for (int j = 0; j < board[i].length; j++) {
-                    board[i][j].setHint(false);
-                }
-            }
-            hints = false;
+            hint();
         } else {
             for (int i = 0; i < board.length; i++) {
                 for (int j = 0; j < board[i].length; j++) {
@@ -98,6 +95,15 @@ public class LOBoard {
             }
             hints = true;
         }
+    }
+
+    public void hint () {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j].setHint(false);
+            }
+        }
+        hints = false;
     }
 
     public void flush(){

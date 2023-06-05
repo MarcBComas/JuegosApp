@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dmcolayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DMCO.Dosmilcuarentayocho4"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/bg2048">
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_gravity="start"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_gravity="end"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:layout_marginBottom="20dp"/>
+
+    <GridLayout
+        android:id="@+id/tablero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:rowCount="4"
+        android:columnCount="4"
+        android:useDefaultMargins="true"
+        >
+
+        <ImageView
+            android:id="@+id/casilla00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="1"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:src="@drawable/casilla_vacia" />
+
+        <ImageView
+            android:id="@+id/casilla22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:src="@drawable/casilla_vacia" />
+
+    </GridLayout>
+
+    <android.widget.Button
+        android:id="@+id/newGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/buttons"
+        android:text="New"
+        android:onClick="onClick"/>
+
+    <android.widget.Button
+        android:id="@+id/stepBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttons"
+        android:text="Stepback"
+        android:onClick="onClick"/>
+
+</LinearLayout>

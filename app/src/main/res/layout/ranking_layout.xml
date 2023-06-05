@@ -12,16 +12,60 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <android.widget.Button
+            android:id="@+id/loBttn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:layout_margin="10dp"
+            android:text="Lights Out"
+            android:onClick="onClick"/>
+
+        <android.widget.Button
+            android:id="@+id/dmcoBttn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:layout_margin="10dp"
+            android:text="2048"
+            android:onClick="onClick"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+        android:textSize="25dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"/>
+
+    <Spinner
+        android:id="@+id/ordenspinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="invisible"/>
+
+    <android.widget.Button
+        android:id="@+id/reorder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="Reordenar"
+        android:onClick="onClick"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="invisible">
     </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

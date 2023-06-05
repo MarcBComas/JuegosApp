@@ -62,16 +62,6 @@
         android:layout_gravity="center"
         android:onClick="onClick"/>
 
-    <android.widget.Button
-        android:id="@+id/lohighscores"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Puntuaciones"
-        android:background="@drawable/buttons"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"
-        android:onClick="onClick"/>
 
     <android.widget.Button
         android:id="@+id/dmco"
@@ -84,19 +74,29 @@
         android:onClick="onClick"/>
 
     <android.widget.Button
-        android:id="@+id/dmcoplay"
+        android:id="@+id/dmcoplay4"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jugar"
+        android:text="4x4"
         android:background="@drawable/buttons"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:onClick="onClick"/>
 
     <android.widget.Button
-        android:id="@+id/dmcohighscores"
+        android:id="@+id/dmcoplay3"
         android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3x3"
+        android:background="@drawable/buttons"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:onClick="onClick"/>
+
+    <android.widget.Button
+        android:id="@+id/highscores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Puntuaciones"
